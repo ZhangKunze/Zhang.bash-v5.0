@@ -1,4 +1,13 @@
 #/data/data/com.termux/files/usr/bin/bash
+you_are_excited=(
+"今天是不是有点太兴奋了"
+"哎哟喂，你输的这啥玩意儿？找不着啊"
+"😂😂😂command not found😂😂😂"
+"哎哟喂，都怪 Microsoft，他让你输错了！"
+"这都怪 NVIDIA，所以你才输错了"
+"本程序没有使用 LLM 哦！所以说不会预测你的行为"
+"今天早上是没睡醒吗，看不清吗？😂😂😂"
+)
 export Zhang_bash_run=true
 case $1 in
 -v|-version|-V|-Version) echo "本脚本是 Zhang.bash 的5.0版本" ;;
@@ -90,5 +99,6 @@ pkg remove $remove
 esac
 done
 ;;
+*) echo -e "\033[35m${you_are_excited[$RANDOM % ${#you_are_excited[@]}]}\033[0m" ;;
 esac
 done
