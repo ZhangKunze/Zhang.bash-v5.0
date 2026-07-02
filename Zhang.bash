@@ -22,6 +22,8 @@ case $YYN in
 echo "[1] 复制文件或目录"
 echo "[2] 删除文件或目录"
 echo "[3] 给 xxx 加执行权限"
+echo "[4] 切换目录"
+echo "[5] 打印当前工作目录"
 echo "[0] 退出"
 read -r -p "选择哪个? " XXX
 if ! [[ "$XXX" =~ ^[0-9]+$ ]]; then
@@ -40,6 +42,10 @@ rm -rf $rm_a
 3) read -r -p "请提供要给执行权限文件的位置。 " chmod_a
 chmod +x $chmod_a
 ;;
+4) read -r -p "想切换到哪个目录？" cd_directory
+cd $cd_directory
+;;
+5) pwd ;;
 esac
 done
 ;;
