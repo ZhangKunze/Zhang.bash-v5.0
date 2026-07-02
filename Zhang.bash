@@ -18,6 +18,7 @@ echo "这是 Zhang.bash，Version：5.0"
 echo "[1] 文件管理"
 echo "[2] Proot 专项"
 echo "[3] 软件管理"
+echo "[4] 猜数字游戏"
 echo "[0] 退出"
 echo "未来还会添加更多选项"
 read -r -p "选择哪一个? " YYN
@@ -98,6 +99,39 @@ pkg remove $remove
 3) pkg list-installed ;;
 esac
 done
+;;
+4) guess_game() {
+local target=$((RANDOM % 10 + 1))
+local attempts=5
+local guess
+echo -e "\033[36m🔮 我生成了一个 1 到 10 之间的数字。\033[0m"
+echo -e "\033[33m你只有 5 次机会，祝你好运。\033[0m"
+while [ $attempts -gt 0 ]; do
+echo -e "\n\033[35m━━━ 剩余次数: $attempts ━━━\033[0m"
+read -p "输入你的猜测: " guess
+if ! [[ "$guess" =~ ^[0-9]+$ ]]; then
+echo -e "\033[31m❌ 请输入有效的数字！\033[0m"
+continue
+fi
+if [ $guess -eq $target ]; then
+echo -e "\033[32m🎉 牛逼！就是 $target！\033[0m"
+return 0
+elif [ $guess -lt $target ]; then
+echo "太小了，往大点猜。"
+else
+echo "太大了，往小点猜。"
+fi
+((attempts--))
+if [ $attempts -eq 2 ]; then
+echo -e "\033[33m⚠️ 只剩 2 次了，你可想好了。\033[0m"
+elif [ $attempts -eq 1 ]; then
+echo -e "\033[31m⚠️ 最后一次机会了！别手抖！\033[0m"
+fi
+done
+echo -e "\n\033[31m💀 5 次全错。答案是: $target 。\033[0m"
+echo -e "\033[33m要不... 承认自己运气不好吧。\033[0m"
+}
+guess_game
 ;;
 *) echo -e "\033[35m${you_are_excited[$RANDOM % ${#you_are_excited[@]}]}\033[0m" ;;
 esac
