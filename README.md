@@ -1,4 +1,4 @@
-##Zhang.bash 5.0 Edition##
+#Zhang.bash 5.0 Edition
 
 这次我决定用中文写 README，不是排斥外国人，因为中文是我的母语。
 
