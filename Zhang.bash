@@ -10,8 +10,27 @@ you_are_excited=(
 )
 export Zhang_bash_run=true
 case $1 in
--v|-version|-V|-Version) echo "本脚本是 Zhang.bash 的5.0版本" ;;
---help|-h) echo "本脚本可以直接调用，这是最主要的用法。-v/-V/-version/-Version 显示版本号。" ;;
+-v) echo "本脚本是 Zhang.bash 的5.0版本"
+if [ "$0" == "$BASH_SOURCE" ]; then
+exit 0
+else
+return 0
+fi
+;;
+--version) echo "本脚本是 Zhang.bash 的5.0版本"
+if [[ "$0" == "$BASH_SOURCE" ]]; then
+exit 0
+else
+return 0
+fi
+;;
+--help) echo "本脚本可以直接调用，这是最主要的用法。-v/--version 显示版本号。"
+if [[ "$0" == "$BASH_SOURCE" ]]; then
+exit 0
+else
+return 0
+fi
+;;
 esac
 while true; do
 echo "这是 Zhang.bash，Version：5.0"
